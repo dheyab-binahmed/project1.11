@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='s0.css') }}" />
+  </head>
+  <body>
+    <div class="auth-container">
+      <div class="auth-card">
+        <div class="auth-header">
+          <img
+            src="{{ url_for('static', filename='nabeel.png') }}"
+            alt="Logo"
+            class="auth-logo"
+          />
+          <h2>Welcome Back!</h2>
+          <p>Login to manage your PDFs effortlessly.</p>
+        </div>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %}
+        <ul class="flash-messages">
+          {% for category, message in messages %}
+          <li class="flash-message {{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %} {% endwith %}
+
+        <!-- Login Form -->
+        <form action="{{ url_for('login') }}" method="POST" class="auth-form">
+          <div class="input-group">
+            <input type="text" id="username" name="username" required />
+            <label for="username">Username</label>
+          </div>
+
+          <div class="input-group password-input-wrapper">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              onmousemove="handleEyeMovement(event)"
+              onfocus="showPasswordEye()"
+              onblur="hidePasswordEye()"
+            />
+            <label for="password">Password</label>
+            <div
+              class="password-toggle"
+              id="passwordEye"
+              onclick="togglePasswordVisibility('password')"
+            >
+              <!-- Closed eye -->
+              <svg
+                class="eye-closed"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+              >
+                <path
+                  d="M12 4.5C7 4.5 2.73 7.61 1.5 12c1.23 4.39 5.5 7.5 10.5 7.5s9.27-3.11 10.5-7.5c-1.23-4.39-5.5-7.5-10.5-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
+                  fill="currentColor"
+                />
+              </svg>
+
+              <!-- Open eye -->
+              <svg
+                class="eye-open"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                style="display: none"
+              >
+                <path
+                  d="M12 6.5c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-4 .7l2.17 2.17c.57-.14 1.18-.22 1.83-.22zm-10.07 1.87L2.5 9.8c1.72 4.39 6 7.5 11 7.5 1.4 0 2.74-.25 4-.7l-2.17-2.17c-.57.14-1.18.22-1.83.22-2.76 0-5-2.24-5-5 0-.65.13-1.26.36-1.83l-2.93-2.93z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M16.5 12c0 .94-.2 1.82-.54 2.64l1.51 1.51C18.01 14.83 18.5 13.45 18.5 12c0-2.28-1.27-4.27-3.14-5.28l-1.51 1.51c.82.44 1.45 1.07 1.89 1.89.42.8.64 1.71.64 2.66zM12 16.5c-2.28 0-4.27-1.27-5.28-3.14l-1.51 1.51C6.17 15.99 7.55 16.5 9 16.5c1.93 0 3.68-.79 4.94-2.06l-1.41-1.41c-.71.71-1.67 1.17-2.72 1.33l.03.03-1.47-1.47c-.06-.06-.12-.13-.18-.19l-1.51-1.51.02.02c-.44-.82-.7-1.74-.7-2.72 0-.94.2-1.82.54-2.64l-1.51-1.51C5.99 9.17 5.5 10.55 5.5 12c0 3.55 2.84 6.5 6.5 6.5.89 0 1.73-.18 2.5-.5l-1.46-1.46c-.27.07-.55.11-.84.11z"
+                  fill="currentColor"
+                  opacity="0.3"
+                />
+                <circle
+                  class="pupil"
+                  cx="12"
+                  cy="12"
+                  r="3"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+          <button type="submit" class="auth-btn">Login</button>
+        </form>
+
+        <p class="auth-link">
+          Don't have an account?
+          <a href="{{ url_for('register') }}">Register here</a>
+        </p>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script0.js') }}"></script>
+  </body>
+</html>

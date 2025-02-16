@@ -1,0 +1,108 @@
+{% extends 'base.html' %} {% block title %}Dashboard{% endblock %} {% block
+content %}
+<div class="text-center">
+  <h1 class="animate__animated animate__fadeInDown mb-4">
+    Welcome, <span class="text-primary">{{ username }}</span>!
+  </h1>
+  <p class="lead animate__animated animate__fadeInUp text-muted">
+    Your personalized dashboard
+  </p>
+</div>
+
+<!-- Statistics Section -->
+<div class="row mt-4 g-4">
+  <div class="col-md-3">
+    <div class="card animate__animated animate__fadeInLeft">
+      <div class="card-body text-center">
+        <i class="fas fa-file-upload fa-3x text-primary"></i>
+        <h3 class="mt-2">{{ total_uploads }}</h3>
+        <p class="text-muted mb-0">Total Uploads</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card animate__animated animate__fadeInUp">
+      <div class="card-body text-center">
+        <i class="fas fa-compress fa-3x text-success"></i>
+        <h3 class="mt-2">{{ total_compressions }}</h3>
+        <p class="text-muted mb-0">Compressed Files</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card animate__animated animate__fadeInUp">
+      <div class="card-body text-center">
+        <i class="fas fa-file-pdf fa-3x text-danger"></i>
+        <h3 class="mt-2">{{ total_combined_files }}</h3>
+        <p class="text-muted mb-0">Combined Files</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card animate__animated animate__fadeInUp">
+      <div class="card-body text-center">
+        <i class="fas fa-database fa-3x text-info"></i>
+        <h3 class="mt-2">
+          {{ '%.2f'|format(total_storage / (1024*1024)) }} MB
+        </h3>
+        <p class="text-muted mb-0">Storage Used</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if current_user.is_admin %}
+<div class="row mt-4">
+  <div class="col-md-12">
+    <h3>Admin Statistics</h3>
+    <div class="row">
+      {% if total_users is not none %}
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-body">
+            <h3>{{ total_users }}</h3>
+            <p class="text-muted">Total Users</p>
+          </div>
+        </div>
+      </div>
+      {% endif %} {% if admin_total_uploads is not none %}
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-body">
+            <h3>{{ admin_total_uploads }}</h3>
+            <p class="text-muted">Total Uploads</p>
+          </div>
+        </div>
+      </div>
+      {% endif %} {% if admin_total_compressions is not none %}
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-body">
+            <h3>{{ admin_total_compressions }}</h3>
+            <p class="text-muted">Total Compressions</p>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<div class="col-md-3">
+  <div class="card animate__animated animate__fadeInRight">
+    <div class="card-body text-center">
+      <i class="fas fa-clock fa-3x text-warning"></i>
+      <h3 class="mt-2">
+        {% if last_activity and last_activity != 'N/A' %} {{
+        last_activity.strftime('%d %b %Y') }} {% else %} N/A {% endif %}
+      </h3>
+
+      <p class="text-muted mb-0">Last Activity</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Download Processed File</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <!-- Animated Sidebar -->
+    <div class="main-sidebar">
+      <div class="sidebar-header">
+        <img
+          src="{{ url_for('static', filename='nabeel.png') }}"
+          alt="Logo"
+          class="sidebar-logo"
+        />
+        <h2>Download</h2>
+      </div>
+      <ul class="sidebar-menu">
+        <li>
+          <a href="{{ url_for('dashboard') }}" class="menu-item"
+            ><span class="menu-icon">🏠</span>Dashboard</a
+          >
+        </li>
+        <li>
+          <a href="{{ url_for('upload') }}" class="menu-item"
+            ><span class="menu-icon">📤</span>Upload PDF</a
+          >
+        </li>
+        <li>
+          <a href="{{ url_for('logout') }}" class="menu-item"
+            ><span class="menu-icon">🔒</span>Logout</a
+          >
+        </li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="animated-dots">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <p>Nabeel Perfumes Industries</p>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content animated-content">
+      <div class="download-container">
+        <h1 class="slide-in">Your Processed PDF is Ready!</h1>
+        <p class="download-description fade-in">
+          Click below to download your file.
+        </p>
+
+        <div class="download-card float-effect">
+          <img
+            src="{{ url_for('static', filename='download-bg.jpg') }}"
+            alt="Download Background"
+            class="download-bg"
+          />
+          <a
+            href="{{ url_for('download', filename=filename) }}"
+            class="btn-download scale-effect"
+            >Download {{ filename }}</a
+          >
+          <a href="{{ url_for('dashboard') }}" class="btn-back scale-effect"
+            >Back to Dashboard</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Button hover effects
+      document.querySelectorAll(".scale-effect").forEach((button) => {
+        button.addEventListener("mouseover", () => {
+          button.style.transform = "scale(1.05)";
+        });
+        button.addEventListener("mouseout", () => {
+          button.style.transform = "scale(1)";
+        });
+      });
+    </script>
+  </body>
+</html>

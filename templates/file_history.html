@@ -1,0 +1,53 @@
+{% extends 'base.html' %} {% block title %}File History{% endblock %} {% block
+content %}
+<div class="container-fluid p-4">
+  <h2 class="mb-4 animate__animated animate__fadeInDown">
+    <i class="fas fa-history me-2"></i>File History
+  </h2>
+
+  {% if history %}
+  <div class="card animate__animated animate__fadeInUp">
+    <div class="card-body">
+      <div class="table-responsive-lg">
+        <table class="table table-hover align-middle">
+          <thead class="table-dark">
+            <tr>
+              <th><i class="fas fa-file me-2"></i>Filename</th>
+              <th><i class="fas fa-folder me-2"></i>Filepath</th>
+              <th><i class="fas fa-tasks me-2"></i>Operation</th>
+              <th><i class="fas fa-clock me-2"></i>Timestamp</th>
+              <th><i class="fas fa-weight me-2"></i>Size</th>
+              <!-- New column for file size -->
+            </tr>
+          </thead>
+          <tbody>
+            {% for file in history %}
+            <tr class="hover-shadow">
+              <td class="text-nowrap">{{ file[0] }}</td>
+              <td class="text-truncate" style="max-width: 200px">
+                {{ file[1] }}
+              </td>
+              <td>
+                <span
+                  class="badge bg-{{ 'success' if file[2] == 'Upload' else 'info' }}"
+                >
+                  {{ file[2] }}
+                </span>
+              </td>
+              <td>{{ file[3] }}</td>
+              <td>{{ "%.2f MB" % (file[4] / (1024 * 1024)) }}</td>
+              <!-- Convert bytes to MB -->
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="alert alert-info animate__animated animate__fadeIn">
+    <i class="fas fa-info-circle me-2"></i>No file history available
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

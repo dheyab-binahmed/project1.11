@@ -1,0 +1,237 @@
+/* Global Styles */
+body {
+  background: #f7f7f7;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Footer */
+.footer {
+  background: #fbfcfd;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+  margin-top: auto;
+}
+
+/* AdminLTE-inspired Sidebar */
+.adminlte-sidebar {
+  background-color: #343a40;
+  width: 250px;
+  min-height: calc(100vh - 56px);
+  transition: all 0.4s ease-in-out;
+  position: fixed;
+  top: 56px;
+  left: 0;
+  z-index: 1000;
+}
+
+.sidebar-brand {
+  padding: 15px;
+  border-bottom: 1px solid #4b545c;
+}
+
+.brand-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+}
+
+.brand-image {
+  height: 33px;
+  margin-right: 10px;
+}
+
+.brand-text {
+  font-size: 1.2rem;
+  transition: opacity 0.4s;
+}
+
+.nav-sidebar {
+  flex-direction: column;
+  padding: 15px 0;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  color: #c2c7d0;
+  padding: 12px 15px;
+  display: block;
+  transition: all 0.3s;
+}
+
+.nav-link:hover {
+  color: #fff;
+  background-color: #ffffff;
+}
+
+/* Collapsed State */
+.sidebar-collapsed {
+  width: 65px;
+}
+
+.sidebar-collapsed .brand-text,
+.sidebar-collapsed .nav-text {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Tooltip for Collapsed State */
+.sidebar-collapsed .nav-link::after {
+  content: attr(data-bs-original-title);
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #343a40;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 3px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s;
+  font-size: 0.9rem;
+  margin-left: 10px;
+}
+
+.sidebar-collapsed .nav-link:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Content Adjustment */
+.content {
+  margin-left: 250px;
+  transition: margin-left 0.4s ease-in-out;
+}
+
+.sidebar-collapsed + .content {
+  margin-left: 65px;
+}
+
+/* Navbar */
+.navbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.navbar {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* Cards */
+.card {
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    margin-left: -250px;
+  }
+
+  .sidebar.active {
+    margin-left: 0;
+  }
+
+  .content {
+    margin-left: 0;
+  }
+
+  .content.active {
+    margin-left: 250px;
+  }
+}
+
+/* Sidebar Toggle Button */
+.sidebar-toggle {
+  display: none;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1100;
+  background: #343a40;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .sidebar-toggle {
+    display: block;
+  }
+}
+.main-sidebar {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Sidebar Burger Icon */
+.navbar-nav .nav-item:first-child {
+  margin-left: 20px;
+}
+
+.navbar-nav .nav-item a {
+  padding-left: 10px;
+}
+
+/* Additional Styles */
+.icon-box {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hover-shadow {
+  transition: all 0.2s;
+}
+
+.hover-shadow:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.dropzone {
+  border: 2px dashed #dee2e6;
+  border-radius: 8px;
+  padding: 2rem;
+  transition: all 0.3s;
+}
+
+.dropzone.dragover {
+  border-color: #198754;
+  background-color: rgba(25, 135, 84, 0.05);
+}
+
+.needs-validation .form-control:invalid {
+  border-color: #8a8888;
+}
+
+.needs-validation .invalid-feedback {
+  display: block;
+}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block title %}Update Profile{% endblock %} {% block
+content %}
+<div class="container-fluid p-4">
+  <h2>Update Profile for {{ username }}</h2>
+  <form method="POST">
+    <div class="mb-3">
+      <label for="username" class="form-label">New Username</label>
+      <input type="text" class="form-control" id="username" name="username" />
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">New Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="password"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+  </form>
+</div>
+{% endblock %}

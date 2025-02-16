@@ -1,0 +1,66 @@
+{% extends 'base.html' %} {% block title %}User Statistics - {{ username }}{%
+endblock %} {% block content %}
+<div class="container-fluid p-4">
+  <h2 class="mb-4">Account Statistics for {{ username }}</h2>
+  <a href="{{ url_for('admin_profiles') }}" class="btn btn-secondary mb-3">
+    <i class="fas fa-arrow-left"></i> Back to User Management
+  </a>
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h3>{{ total_uploads if total_uploads is not none else 0 }}</h3>
+          <p class="text-muted">Total Uploads</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h3>
+            {{ total_compressions if total_compressions is not none else 0 }}
+          </h3>
+          <p class="text-muted">Total Compressions</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h3>
+            {{ total_combined_files if total_combined_files is not none else 0
+            }}
+          </h3>
+          <p class="text-muted">Combined Files</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h3>
+            {{ "%.2f"|format(total_storage / (1024*1024)) if total_storage is
+            not none else "0.00" }} MB
+          </h3>
+          <p class="text-muted">Storage Used</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mt-4">
+    <div class="card-body">
+      <h5 class="card-title">Last Activity</h5>
+      <p class="card-text">
+        {% if last_activity and last_activity != 'N/A' %} {{
+        last_activity.strftime('%Y-%m-%d %H:%M:%S') }} {% else %} No recorded
+        activity {% endif %}
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}
